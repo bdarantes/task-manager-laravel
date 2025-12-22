@@ -1,13 +1,27 @@
-<h1>Tarefas</h1>
+@extends('layouts.app')
 
-<form method="POST" action="/tasks">
+@section('title', 'Lista de Tarefas')
+
+@section('content')
+
+
+
+<h2>Nova Tarefa</h2>
+
+<form action="{{ route('tasks.store') }}"method="POST">
     @csrf
-    <input name="title" placeholder="Titulo">
-    <textarea name="description"></textarea>
-    <button>Adicionar</button>
+    <input type="text" name="title" placeholder="Título" required>
+    <br><br>
+
+    <textarea name="description" placeholder="Descrição"></textarea>
+    <br><br>
+
+    <button type="submit">Salvar</button>
 </form>
 
 <hr>
+
+<h2>Minhas Tarefas</h2>
 
 @if ($tasks->isEmpty())
     <p>Nenhuma tarefa cadastrada.</p>
@@ -27,3 +41,4 @@
         </div>
     @endforeach
 @endif
+@endsection

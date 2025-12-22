@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Task Manager'</title>
+    <title>@yield('title', 'Task Manager')</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
