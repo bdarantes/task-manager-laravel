@@ -8,12 +8,22 @@
 
 <h2>Nova Tarefa</h2>
 
+@if ($errors->any())
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li style="color:red">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form action="{{ route('tasks.store') }}"method="POST">
     @csrf
-    <input type="text" name="title" placeholder="Título" required>
+    <input type="text" name="title" placeholder="Título" required value="{{ old('title') }}">
     <br><br>
 
-    <textarea name="description" placeholder="Descrição"></textarea>
+    <textarea name="description" placeholder="Descrição">{{ old('description') }}</textarea>
     <br><br>
 
     <button type="submit">Salvar</button>
