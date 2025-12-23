@@ -10,12 +10,16 @@
 
     <header>
         <h1>Task Manager</h1>
-        <nav>
-            <a href="{{ route('tasks.index') }}"></a>
-        </nav>
     </header>
 
     <main>
+        @if (session('success'))
+            <div>
+                <strong>{{ session('success') }}</strong>
+            </div>
+            <hr>
+        
+        @endif
         @yield('content')
     </main>
 

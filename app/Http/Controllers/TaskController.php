@@ -24,7 +24,7 @@ class TaskController extends Controller
 
         return redirect()
             ->route('tasks.index')
-            ->with('sucess', 'Tarefa criada com sucesso!');
+            ->with('success', 'Tarefa criada com sucesso!');
     }
     public function edit(Task $task)
     {
