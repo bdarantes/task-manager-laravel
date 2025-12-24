@@ -43,10 +43,15 @@
 
             <a href="/tasks/{{ $task->id }}/edit">Editar</a>
 
-            <form method="POST" action="/tasks/{{ $task->id }}" style="display:inline">
+            <form 
+                action="{{ route('tasks.destroy', $task->id) }}"
+                method="POST"
+                onsubmit="return confirm('tem certeza que deseja excluir essa tarefa?')"
+            
+            >
                 @csrf
                 @method('DELETE')
-                <button>Excluir</button>
+                <button type="submit">Excluir</button>
             </form>
         </div>
     @endforeach
