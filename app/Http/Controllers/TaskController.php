@@ -32,8 +32,16 @@ class TaskController extends Controller
     }
     public function update(Request $request, Task $task) 
     {
-        $task->update($request->only('title', 'description'));
-        return redirect('/');
+        $validated = $request->validate([
+            'title' => 'required|min:3|max:255',
+            'description' => 'nullable|min:3|max:1000',
+        ]);
+
+        $task->update($validated);
+
+        return redirect()
+            ->route('tasks.index')
+            ->with('sucess', 'Tarefa atualizada com sucesso!');
     } 
     public function destroy(Task $task)
     {
