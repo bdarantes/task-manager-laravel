@@ -9,14 +9,12 @@
     </div>
     <hr>
 @endif
-<h1>Editar tarefa</h1>
+<h2>Editar tarefa</h2>
 
-<form method="POST" action="/tasks/{{ $task->id }}">
-    @csrf
-    @method('PUT')
+@include('tasks._form', [
+    'action' => route('tasks.update', $task->id),
+    'method' => 'PUT',
+    'task'=> $task
 
-    <input type="text" name="title" value="{{ old('title', $task->title) }}" required>
-    <textarea name="description">{{ old('description', $task->description) }}</textarea>
+])
 
-    <button>Salvar</button>
-</form>

@@ -4,34 +4,25 @@
 
 @section('content')
 
-
-
 <h2>Nova Tarefa</h2>
 
 @if ($errors->any())
     <div>
         <ul>
             @foreach ($errors->all() as $error)
-            <li style="color:red">{{ $error }}</li>
+             <li style="color:red">{{ $error }}</li>
             @endforeach
         </ul>
     </div>
 @endif
 
-<form action="{{ route('tasks.store') }}"method="POST">
-    @csrf
-    <input type="text" name="title" placeholder="Título" required value="{{ old('title') }}">
-    <br><br>
-
-    <textarea name="description" placeholder="Descrição">{{ old('description') }}</textarea>
-    <br><br>
-
-    <button type="submit">Salvar</button>
-</form>
+@include('tasks._form', [
+    'action' => route('tasks.store')
+])
 
 <hr>
 
-<h2>Minhas Tarefas</h2>
+<h2>Minhas tarefas</h2>
 
 @if ($tasks->isEmpty())
     <p>Nenhuma tarefa cadastrada.</p>
@@ -43,12 +34,14 @@
 
             <a href="/tasks/{{ $task->id }}/edit">Editar</a>
 
-            <form 
+            
+            <form
                 action="{{ route('tasks.destroy', $task->id) }}"
                 method="POST"
-                onsubmit="return confirm('tem certeza que deseja excluir essa tarefa?')"
-            
+                style="display:inline"
+                onsubmit="return confirm('Tem certeza que deseja excluir essa tarefa?')"
             >
+         
                 @csrf
                 @method('DELETE')
                 <button type="submit">Excluir</button>
@@ -56,4 +49,5 @@
         </div>
     @endforeach
 @endif
+
 @endsection
